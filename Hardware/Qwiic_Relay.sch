@@ -9571,7 +9571,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <sheet>
 <plain>
 <text x="175.26" y="10.16" size="2.54" layer="94">Kevin Kuwata</text>
-<text x="238.76" y="7.62" size="2.54" layer="94">1</text>
+<text x="238.76" y="7.62" size="2.54" layer="94">2</text>
 <wire x1="157.48" y1="185.42" x2="147.32" y2="185.42" width="0.2032" layer="97" style="longdash"/>
 <wire x1="147.32" y1="185.42" x2="147.32" y2="99.06" width="0.2032" layer="97" style="longdash"/>
 <wire x1="0" y1="99.06" x2="147.32" y2="99.06" width="0.2032" layer="97" style="longdash"/>
@@ -9770,14 +9770,6 @@ and check that you don't need it</text>
 </net>
 <net name="SDA" class="0">
 <segment>
-<label x="137.16" y="60.96" size="1.27" layer="95" xref="yes"/>
-<pinref part="R7" gate="G$1" pin="1"/>
-<wire x1="99.06" y1="60.96" x2="137.16" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="137.16" y1="71.12" x2="137.16" y2="60.96" width="0.1524" layer="91"/>
-<junction x="137.16" y="60.96"/>
-<pinref part="U1" gate="U1" pin="(MISO/DO/AIN1/OC0B/OC1A/PCINT1)PB1"/>
-</segment>
-<segment>
 <pinref part="J2" gate="G$1" pin="3"/>
 <wire x1="223.52" y1="165.1" x2="218.44" y2="165.1" width="0.1524" layer="91"/>
 <label x="218.44" y="165.1" size="1.27" layer="95" rot="R180" xref="yes"/>
@@ -9797,6 +9789,13 @@ and check that you don't need it</text>
 <label x="172.72" y="119.38" size="1.27" layer="95" rot="MR0" xref="yes"/>
 <pinref part="J1" gate="G$1" pin="2"/>
 </segment>
+<segment>
+<pinref part="U1" gate="U1" pin="(MOSI/DI/SDA/AIN0/OC0A/OC1A/AREF/PCINT0)PB0"/>
+<label x="137.16" y="58.42" size="1.27" layer="95" xref="yes"/>
+<pinref part="R7" gate="G$1" pin="1"/>
+<wire x1="99.06" y1="58.42" x2="137.16" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="137.16" y1="58.42" x2="137.16" y2="71.12" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="SCL" class="0">
 <segment>
@@ -9810,15 +9809,6 @@ and check that you don't need it</text>
 <label x="218.44" y="137.16" size="1.27" layer="95" rot="MR0" xref="yes"/>
 </segment>
 <segment>
-<label x="139.7" y="66.04" size="1.27" layer="95" xref="yes"/>
-<wire x1="99.06" y1="66.04" x2="121.92" y2="66.04" width="0.1524" layer="91"/>
-<pinref part="R6" gate="G$1" pin="1"/>
-<wire x1="121.92" y1="66.04" x2="139.7" y2="66.04" width="0.1524" layer="91"/>
-<wire x1="121.92" y1="71.12" x2="121.92" y2="66.04" width="0.1524" layer="91"/>
-<junction x="121.92" y="66.04"/>
-<pinref part="U1" gate="U1" pin="(PCINT3/XTAL1/CLKI/OC1B/ADC3)PB3"/>
-</segment>
-<segment>
 <pinref part="J4" gate="G$1" pin="3"/>
 <wire x1="187.96" y1="63.5" x2="185.42" y2="63.5" width="0.1524" layer="91"/>
 <label x="185.42" y="63.5" size="1.27" layer="95" rot="R180" xref="yes"/>
@@ -9827,6 +9817,13 @@ and check that you don't need it</text>
 <wire x1="175.26" y1="121.92" x2="172.72" y2="121.92" width="0.1524" layer="91"/>
 <label x="172.72" y="121.92" size="1.27" layer="95" rot="MR0" xref="yes"/>
 <pinref part="J1" gate="G$1" pin="1"/>
+</segment>
+<segment>
+<pinref part="U1" gate="U1" pin="(SCK/USCK/SCL/ADC1/T0/INT0/PCINT2)PB2"/>
+<label x="121.92" y="63.5" size="1.27" layer="95" xref="yes"/>
+<wire x1="99.06" y1="63.5" x2="121.92" y2="63.5" width="0.1524" layer="91"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<wire x1="121.92" y1="71.12" x2="121.92" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
@@ -9976,14 +9973,14 @@ and check that you don't need it</text>
 </net>
 <net name="MISO" class="0">
 <segment>
-<wire x1="99.06" y1="63.5" x2="101.6" y2="63.5" width="0.1524" layer="91"/>
-<label x="101.6" y="63.5" size="1.27" layer="95" xref="yes"/>
-<pinref part="U1" gate="U1" pin="(SCK/USCK/SCL/ADC1/T0/INT0/PCINT2)PB2"/>
-</segment>
-<segment>
 <pinref part="J4" gate="G$1" pin="1"/>
 <wire x1="187.96" y1="66.04" x2="185.42" y2="66.04" width="0.1524" layer="91"/>
 <label x="185.42" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="U1" pin="(MISO/DO/AIN1/OC0B/OC1A/PCINT1)PB1"/>
+<wire x1="99.06" y1="60.96" x2="101.6" y2="60.96" width="0.1524" layer="91"/>
+<label x="101.6" y="60.96" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
