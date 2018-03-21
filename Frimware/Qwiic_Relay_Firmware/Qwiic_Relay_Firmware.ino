@@ -65,14 +65,11 @@ void loop() {
 /*========================================================*/
 //        ISR
 /*========================================================*/
-/*
-    @brief: When the master initiates a command and data to slave
-		ie) the master says 0x01, then sends a 1, means command: 0x01 then the slave listens for the next thing, which is the relay state 1
-    @global: This is modifying ReceivedData array, which stores all the bytes that a master sent to the slave.
-	@input:
-    @returns: none
-    @flags:  none
-*/
+
+// When the master initiates a command and data to slave
+//		ie) the master says 0x01, then sends a 1, means command: 0x01 then the slave listens for the next thing, which is the relay state 1
+//This is modifying ReceivedData array, which stores all the bytes that a master sent to the slave.
+
 void receiveEvent(int bytesReceived) {
 	int index = 0; //index of all the data received from master.
 	
@@ -83,13 +80,10 @@ void receiveEvent(int bytesReceived) {
 }// end of receive ISR
 
 
-/*
-    @brief: When the master requests data from the slave, this
-      ISR is triggered. 
-    @input: none, 
-    @returns: none
-    @flags:  none
-*/
+
+//When the master requests data from the slave, this
+  //    ISR is triggered. 
+
 void onI2CRequest() {
 	//TODO: add in something to report the address.
 	if(digitalRead(RELAY_PIN) == HIGH) TinyWire.send(0x01);
