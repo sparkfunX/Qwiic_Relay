@@ -3,7 +3,7 @@
 <eagle version="7.7.0">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
@@ -264,12 +264,12 @@
 <text x="68.326" y="99.568" size="1.016" layer="22" font="vector" ratio="15" rot="MR270" align="center-left">SCL</text>
 <text x="60.706" y="99.568" size="1.016" layer="22" font="vector" ratio="15" rot="MR270" align="center-left">GND</text>
 <text x="76.073" y="61.468" size="1.778" layer="16" ratio="15" rot="MR90" align="center">x11</text>
-<wire x1="25.654" y1="0" x2="25.654" y2="108.966" width="0.254" layer="20"/>
-<text x="25.654" y="111.252" size="1.778" layer="20" font="vector" ratio="15">v-score</text>
-<wire x1="51.562" y1="0" x2="51.562" y2="108.966" width="0.254" layer="20"/>
-<text x="51.562" y="111.252" size="1.778" layer="20" font="vector" ratio="15">v-score</text>
-<wire x1="0" y1="51.054" x2="84.074" y2="51.054" width="0.254" layer="20"/>
-<text x="91.694" y="51.054" size="1.778" layer="20" font="vector" ratio="15">v-score</text>
+<wire x1="25.654" y1="0" x2="25.654" y2="108.966" width="0.381" layer="20"/>
+<text x="25.654" y="111.252" size="1.778" layer="20" font="vector" ratio="15" align="center">v-score</text>
+<wire x1="51.562" y1="0" x2="51.562" y2="108.966" width="0.381" layer="20"/>
+<text x="51.562" y="111.252" size="1.778" layer="20" font="vector" ratio="15" align="center">v-score</text>
+<wire x1="0" y1="51.054" x2="84.074" y2="51.054" width="0.381" layer="20"/>
+<text x="91.694" y="51.054" size="1.778" layer="20" font="vector" ratio="15" align="center">v-score</text>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">
