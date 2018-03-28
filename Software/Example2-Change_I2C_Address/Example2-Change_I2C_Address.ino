@@ -39,15 +39,20 @@ void setup() {
 }
 
 void loop() {
-  relayOn(); // Turn on the Relay
+  relayOn(); // Turn on the Relay (at address 0x18)
   delay(1000);
-  changeAddress(0x19); // Change the Relay's address to 0x19
+  byte error = changeAddress(0x19); // Change the Relay's address to 0x19
   delay(100);   //Allow the slave time to change it's address.
-  relayOff(); // Turn off the Relay
+  relayOff(); // Turn off the Relay (at address 0x19)
   delay(1000);
-
-  changeAddress(0x00); // Try to change address to Invalid Address.
-  delay(1000);
+  changeAddress(0x00);
+  if (error) { // Try to change address to Invalid Address.
+    Serial.println("!!!!! invalid address" );
+  }
+  else if (error == 0) {
+    Serial.println("success");
+  }
+delay(1000);
 }
 
 
@@ -59,7 +64,7 @@ void loop() {
 // address is not changed and is ignored.
 // This function returns 0 if succesful and
 // -1 if unsuccessful.
-int changeAddress(byte _address) {
+byte changeAddress(byte _address) {
   //check here for an ACK from the slave
   //if Wire.endTransmission() returns a 2, Slave not found.
   if (Wire.endTransmission() == 2) {
@@ -103,9 +108,9 @@ int changeAddress(byte _address) {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOn() {
-    Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
-    Wire.write(0x01);           // Writes 0x01 to the Slave
-    Wire.endTransmission();     // stop transmitting
+  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
+  Wire.write(0x01);           // Writes 0x01 to the Slave
+  Wire.endTransmission();     // stop transmitting
 }
 
 
@@ -113,7 +118,7 @@ void relayOn() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-    Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
-    Wire.write(0x00);              // Writes 0x00 to the Slave
-    Wire.endTransmission();       // stop transmitting
+  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
+  Wire.write(0x00);              // Writes 0x00 to the Slave
+  Wire.endTransmission();       // stop transmitting
 }

@@ -8,13 +8,15 @@
   This is the firmware on the Qwiic Relay. The default I2C Address is
   0x18;
 
+  If an invalid addresses is sent, the slave does not change it's address. No notification to master. 
+
 ******************************************************************************/
 #include <TinyWire.h> //https://github.com/lucullusTheOnly/TinyWire
 #include <EEPROM.h>
 
 #define RELAY_PIN   4
 
-volatile byte SLAVE_ADDRESS  =    0x18; //default
+volatile byte Qwiic_Relay_Address  =    0x18; //default
 
 
 volatile int ReceivedData[32]; //32 byte array to act as a buffer for I2C data. 32 bytes is the max for an UNO 
@@ -26,13 +28,13 @@ void setup() {
 	byte value =  EEPROM.read(1);
 	if(value == 0xFF){
 		//never been written before, USE THE Default address.
-		SLAVE_ADDRESS = 0x18; //default
+		Qwiic_Relay_Address = 0x18; //default
 	}
 	else{
-		SLAVE_ADDRESS = EEPROM.read(1);
+		Qwiic_Relay_Address = EEPROM.read(1);
 	}
 
-	TinyWire.begin(SLAVE_ADDRESS);
+	TinyWire.begin(Qwiic_Relay_Address);
     pinMode(RELAY_PIN, OUTPUT);
 	TinyWire.onReceive(receiveEvent); // register event
     TinyWire.onRequest(onI2CRequest);
@@ -52,10 +54,10 @@ void loop() {
 		if(ReceivedData[1] > 0x07 && ReceivedData[1] < 78){
 			//valid address, update and save to EEPROM
 						
-		SLAVE_ADDRESS = ReceivedData[1];	
+		Qwiic_Relay_Address = ReceivedData[1];	
 					//save to eerprom
-		EEPROM.write(1, SLAVE_ADDRESS);
-		TinyWire.begin(SLAVE_ADDRESS);		
+		EEPROM.write(1, Qwiic_Relay_Address);
+		TinyWire.begin(Qwiic_Relay_Address);		
 		}			
 		ReceivedData[0]=0x99;
 		ReceivedData[1] = 0x99;
