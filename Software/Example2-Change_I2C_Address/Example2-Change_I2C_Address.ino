@@ -26,33 +26,31 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Master Awake");
   Wire.begin(); // join the I2C Bus
-
+  
+  
   Wire.beginTransmission(qwiicRelayAddress); // transmit to device
   //check here for an ACK from the slave
-  //if Wire.endTransmission() returns a 2, slave not found.
-  if (Wire.endTransmission() == 2) {
+  if (Wire.endTransmission() !=0 ) {
     Serial.println("Check Connections. Slave not found.");
   }
 
     Serial.println("Qwiic Relay found!");
-  
-}
-
-void loop() {
+	
   relayOn(); // Turn on the Relay (at address 0x18)
   delay(1000);
   byte error = changeAddress(0x19); // Change the Relay's address to 0x19
   delay(100);   //Allow the slave time to change it's address.
   relayOff(); // Turn off the Relay (at address 0x19)
   delay(1000);
-  changeAddress(0x00);
-  if (error) { // Try to change address to Invalid Address.
+  changeAddress(0x00); // Try to change address to Invalid Address.
+  
+  if (error != true) {
     Serial.println("!!!!! invalid address" );
   }
-  else if (error == 0) {
     Serial.println("success");
-  }
-delay(1000);
+}
+
+void loop() {
 }
 
 
@@ -62,17 +60,16 @@ delay(1000);
 // 0x07 and 0x78. If valid, the new address is
 // saved to the Relay's EEPROM. If not valid
 // address is not changed and is ignored.
-// This function returns true if succesful and
+// This function returns true if successful and
 // false if unsuccessful.
 boolean changeAddress(byte address) {
+	Wire.beginTransmission(qwiicRelayAddress); // transmit to device
   //check here for an ACK from the slave
   if (Wire.endTransmission()  != 0) {
     Serial.println("Check Connections. No slave found.");
     return(false);
   }
-  else {
-    Wire.beginTransmission(qwiicRelayAddress);
-  }
+
   //check if valid address.
   if (address < 0x07 || address > 0x78) {
 	 Serial.println("Invalid I2C address");
@@ -80,7 +77,6 @@ boolean changeAddress(byte address) {
   }
     //valid address
     Wire.beginTransmission(qwiicRelayAddress); // transmit to device
-
     Wire.write(0x03);        // writes the change address command
     qwiicRelayAddress = address;
     Wire.write(qwiicRelayAddress);              // sends new address

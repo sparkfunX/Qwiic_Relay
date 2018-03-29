@@ -5,37 +5,26 @@
   https://github.com/sparkfunX/Qwiic_Relay
   Arduino 1.8.5
 
-  This sketch demonstrates how to change the I2C Addres
-  of the Qwiic Relay. The new address will be saved to the
-  Relay's EEPROM.
+  This sketch demonstrates how to get the current status of the 
+  of the Qwiic Relay. The master requests 1 byte of data from the Relay and the 
+  Relay responds with a 1 for on and a 0 for off.
 
-  The factory default slave address is 0x18.
+  Default Qwiic relay address is 0x18.
 
-  Note: If the Qwiic Relay is connected but unresponsive, try Example 3 - I2C_Scanner
-  to find the current address of the Relay.
-
-  Only valid address can be saved to the Relay's EEPROM. If an invalid address is
-  sent, the Relay will ignore the address change without notifying the user.
+  
 
 ******************************************************************************/
 #include <Wire.h>
 
-byte Qwiic_Relay_Address = 0x18;     //Default Address
+const byte qwiicRelayAddress = 0x18;     //Default Address
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Master Awake");
+  
   Wire.begin(); // join the I2C Bus
-
-  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device
-  //check here for an ACK from the slave
-  //if Wire.endTransmission() returns a 2, slave not found.
-  if (Wire.endTransmission() == 2) {
-    Serial.println("Check Connections. Slave not found.");
-  }
-  else {
-    Serial.println("Qwiic Relay found!");
-  }
+  testForConnectivity();
+  
   relayOn();
   delay(2000);
 }
@@ -49,7 +38,7 @@ void loop() {
     Serial.println("Relay is off.");
   }
   else {
-    Serial.println("an error occured");
+    Serial.println("an error occurred");
   }
   delay(1000);
   relayOff();
@@ -58,9 +47,9 @@ void loop() {
 
 // getStatus() returns the status of the Qwiic Relay.
 // if returns a 1 the relay is on, return a 0 if the
-// Relay is off, and a -1 if an error occured.
+// Relay is off, and a -1 if an error occurred.
 byte getStatus() {
-  Wire.requestFrom(Qwiic_Relay_Address, 1);    // request 1 bytes from slave device Qwiic_Relay_Address
+  Wire.requestFrom(qwiicRelayAddress, 1);    // request 1 bytes from slave device qwiicRelayAddress
   while (Wire.available()) { // slave may send less than requested
     char c = Wire.read(); // receive a byte as character.
     if (c == 0x01) {
@@ -69,9 +58,9 @@ byte getStatus() {
     else if (c == 0x00) {
       return 0;
     }
-    else {
-      return -1;
-    }
+
+      return -1; //error
+
   }
 }
 
@@ -81,7 +70,7 @@ byte getStatus() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOn() {
-  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
+  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
   Wire.write(0x01);           // Writes 0x01 to the Slave
   Wire.endTransmission();     // stop transmitting
 }
@@ -90,7 +79,19 @@ void relayOn() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
+  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
   Wire.write(0x00);              // Writes 0x00 to the Slave
   Wire.endTransmission();       // stop transmitting
+}
+
+
+// testForConnectivity() checks for an ACK from an Relay. If no ACK
+// program freezes and notifies user. 
+void testForConnectivity(){
+	Wire.beginTransmission(qwiicRelayAddress);
+	//check here for an ACK from the slave, if no ack don't allow change?
+	if(Wire.endTransmission() != 0){
+		Serial.println("Check Connections. No slave attached.");
+		while(1);
+	}
 }
