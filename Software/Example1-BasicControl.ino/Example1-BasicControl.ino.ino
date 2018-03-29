@@ -52,6 +52,9 @@ void relayOff() {
   Wire.endTransmission();       
 }
 
+
+// testForConnectivity() checks for an ACK from an Relay. If no ACK
+// program freezes and notifies user. 
 void testForConnectivity(){
 	Wire.beginTransmission(qwiicRelayAddress);
 	//check here for an ACK from the slave, if no ack don't allow change?

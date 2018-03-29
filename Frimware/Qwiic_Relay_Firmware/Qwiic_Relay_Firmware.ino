@@ -47,7 +47,6 @@ void loop() {
 	if(ReceivedData[0] == 0x01){
 		digitalWrite(RELAY_PIN, HIGH);
 		//ReceivedData[0] = 0x99;
-
 	}
 	
 	if(ReceivedData[0] == 0x00){

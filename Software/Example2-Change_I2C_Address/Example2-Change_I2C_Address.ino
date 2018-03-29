@@ -5,7 +5,7 @@
   https://github.com/sparkfunX/Qwiic_Relay
   Arduino 1.8.5
 
-  This sketch demonstrates how to change the I2C Addres
+  This sketch demonstrates how to change the I2C Address
   of the Qwiic Relay. The new address will be saved to the
   Relay's EEPROM.
 
@@ -20,22 +20,22 @@
 ******************************************************************************/
 #include <Wire.h>
 
-byte Qwiic_Relay_Address = 0x18;     //Default Address
+volatile byte qwiicRelayAddress = 0x18;     //Default Address
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Master Awake");
   Wire.begin(); // join the I2C Bus
 
-  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device
+  Wire.beginTransmission(qwiicRelayAddress); // transmit to device
   //check here for an ACK from the slave
   //if Wire.endTransmission() returns a 2, slave not found.
   if (Wire.endTransmission() == 2) {
     Serial.println("Check Connections. Slave not found.");
   }
-  else {
+
     Serial.println("Qwiic Relay found!");
-  }
+  
 }
 
 void loop() {
@@ -62,43 +62,30 @@ delay(1000);
 // 0x07 and 0x78. If valid, the new address is
 // saved to the Relay's EEPROM. If not valid
 // address is not changed and is ignored.
-// This function returns 0 if succesful and
-// -1 if unsuccessful.
-byte changeAddress(byte _address) {
+// This function returns true if succesful and
+// false if unsuccessful.
+boolean changeAddress(byte address) {
   //check here for an ACK from the slave
-  //if Wire.endTransmission() returns a 2, Slave not found.
-  if (Wire.endTransmission() == 2) {
+  if (Wire.endTransmission()  != 0) {
     Serial.println("Check Connections. No slave found.");
-    return -1;
+    return(false);
   }
   else {
-    Wire.beginTransmission(Qwiic_Relay_Address);
+    Wire.beginTransmission(qwiicRelayAddress);
   }
   //check if valid address.
-  if (_address > 0x07 && _address < 0x78) {
-    Serial.print("The current address is: ");
-    Serial.println(Qwiic_Relay_Address, HEX);
-
+  if (address < 0x07 || address > 0x78) {
+	 Serial.println("Invalid I2C address");
+    return(false);
+  }
     //valid address
-    Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device
+    Wire.beginTransmission(qwiicRelayAddress); // transmit to device
 
     Wire.write(0x03);        // writes the change address command
-    Qwiic_Relay_Address = _address;
-    Wire.write(Qwiic_Relay_Address);              // sends new address
+    qwiicRelayAddress = address;
+    Wire.write(qwiicRelayAddress);              // sends new address
     Wire.endTransmission();    // stop transmitting
-    Wire.begin(Qwiic_Relay_Address);// start with the new address..
-    Serial.print("The new address is: 0x");
-    Serial.println(_address, HEX);
-  }
-  else {
-    Serial.print("The address 0x");
-    Serial.print(_address);
-    Serial.println(" is an invalid I2C Address. Needs to be between 0x77 and 0x78.");
-    Serial.print("The address is still: 0x");
-    Serial.println(Qwiic_Relay_Address, HEX);
-    return -1;
-  }
-  return 0;
+	return(true); //Success!
 }
 
 
@@ -108,7 +95,7 @@ byte changeAddress(byte _address) {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOn() {
-  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
+  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
   Wire.write(0x01);           // Writes 0x01 to the Slave
   Wire.endTransmission();     // stop transmitting
 }
@@ -118,7 +105,7 @@ void relayOn() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-  Wire.beginTransmission(Qwiic_Relay_Address); // transmit to device 0x18
+  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
   Wire.write(0x00);              // Writes 0x00 to the Slave
   Wire.endTransmission();       // stop transmitting
 }
