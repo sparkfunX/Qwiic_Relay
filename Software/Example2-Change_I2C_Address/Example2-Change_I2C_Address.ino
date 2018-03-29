@@ -63,7 +63,7 @@ void loop() {
 // This function returns true if successful and
 // false if unsuccessful.
 boolean changeAddress(byte address) {
-	Wire.beginTransmission(qwiicRelayAddress); // transmit to device
+	Wire.beginTransmission(qwiicRelayAddress); 
   //check here for an ACK from the slave
   if (Wire.endTransmission()  != 0) {
     Serial.println("Check Connections. No slave found.");
@@ -76,11 +76,11 @@ boolean changeAddress(byte address) {
     return(false);
   }
     //valid address
-    Wire.beginTransmission(qwiicRelayAddress); // transmit to device
-    Wire.write(0x03);        // writes the change address command
+    Wire.beginTransmission(qwiicRelayAddress); 
+    Wire.write(0x03);        
     qwiicRelayAddress = address;
-    Wire.write(qwiicRelayAddress);              // sends new address
-    Wire.endTransmission();    // stop transmitting
+    Wire.write(qwiicRelayAddress);           
+    Wire.endTransmission();    
 	return(true); //Success!
 }
 
@@ -91,9 +91,9 @@ boolean changeAddress(byte address) {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOn() {
-  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
-  Wire.write(0x01);           // Writes 0x01 to the Slave
-  Wire.endTransmission();     // stop transmitting
+  Wire.beginTransmission(qwiicRelayAddress); 
+  Wire.write(0x01);          
+  Wire.endTransmission();    
 }
 
 
@@ -101,7 +101,7 @@ void relayOn() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
-  Wire.write(0x00);              // Writes 0x00 to the Slave
-  Wire.endTransmission();       // stop transmitting
+  Wire.beginTransmission(qwiicRelayAddress); 
+  Wire.write(0x00);              
+  Wire.endTransmission();      
 }

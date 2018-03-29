@@ -26,7 +26,7 @@ void setup() {
   testForConnectivity();
   
   relayOn();
-  delay(2000);
+  delay(1000);
 }
 
 void loop() {
@@ -38,7 +38,7 @@ void loop() {
     Serial.println("Relay is off.");
   }
   else {
-    Serial.println("an error occurred");
+    Serial.println("An error occurred.");
   }
   delay(1000);
   relayOff();
@@ -58,9 +58,7 @@ byte getStatus() {
     else if (c == 0x00) {
       return 0;
     }
-
       return -1; //error
-
   }
 }
 
@@ -70,18 +68,18 @@ byte getStatus() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOn() {
-  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
-  Wire.write(0x01);           // Writes 0x01 to the Slave
-  Wire.endTransmission();     // stop transmitting
+  Wire.beginTransmission(qwiicRelayAddress); 
+  Wire.write(0x01);           
+  Wire.endTransmission();    
 }
 
 // RelayOff() turns off the relay at the SLAVE_ADDRESS
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-  Wire.beginTransmission(qwiicRelayAddress); // transmit to device 0x18
-  Wire.write(0x00);              // Writes 0x00 to the Slave
-  Wire.endTransmission();       // stop transmitting
+  Wire.beginTransmission(qwiicRelayAddress); 
+  Wire.write(0x00);             
+  Wire.endTransmission();      
 }
 
 
@@ -89,9 +87,9 @@ void relayOff() {
 // program freezes and notifies user. 
 void testForConnectivity(){
 	Wire.beginTransmission(qwiicRelayAddress);
-	//check here for an ACK from the slave, if no ack don't allow change?
+	//check here for an ACK from the slave, if no ACK don't allow change?
 	if(Wire.endTransmission() != 0){
-		Serial.println("Check Connections. No slave attached.");
+		Serial.println("Check connections. No slave attached.");
 		while(1);
 	}
 }
