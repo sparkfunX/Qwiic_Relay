@@ -13,7 +13,7 @@
 
 #include <Wire.h>
 
-byte LATEST_ADDRESS = 0x19;     //Default Address
+byte LATEST_ADDRESS = 0x18;     //Default Address
 
 void setup() {
   Serial.begin(9600);
