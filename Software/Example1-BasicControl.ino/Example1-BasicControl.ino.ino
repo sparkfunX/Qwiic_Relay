@@ -13,12 +13,15 @@
 
 #include <Wire.h>
 
-byte LATEST_ADDRESS = 0x18;     //Default Address
+const byte qwiicRelayAddress = 0x18;     //Default Address
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Example 1 Basic Control");
   Wire.begin(); // join the I2C Bus
+  
+  testForConnectivity();
+  
 }
 
 void loop() {
@@ -30,22 +33,30 @@ void loop() {
   delay(2000);  // Wait 2 Seconds
 }
 
-// RelayOn() turns on the relay at the LATEST_ADDRESS
+// RelayOn() turns on the relay at the qwiicRelayAddress
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOn() {
-  Wire.beginTransmission(LATEST_ADDRESS); // transmit to default address: 0x18
-  Wire.write(0x01);           // Writes 0x01 to the Slave
-  Wire.endTransmission();     // stop transmitting
+  Wire.beginTransmission(qwiicRelayAddress);
+  Wire.write(0x01);          
+  Wire.endTransmission(); 
 }
 
 
-// RelayOff() turns off the relay at the LATEST_ADDRESS
+// RelayOff() turns off the relay at the qwiicRelayAddress
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-  Wire.beginTransmission(LATEST_ADDRESS); // transmit to device 0x18
-  Wire.beginTransmission(LATEST_ADDRESS); // transmit to device 0x18
-  Wire.write(0x00);              // Writes 0x00 to the Slave
-  Wire.endTransmission();       // stop transmitting
+  Wire.beginTransmission(qwiicRelayAddress); 
+  Wire.write(0x00);              
+  Wire.endTransmission();       
+}
+
+void testForConnectivity(){
+	Wire.beginTransmission(qwiicRelayAddress);
+	//check here for an ACK from the slave, if no ack don't allow change?
+	if(Wire.endTransmission() != 0){
+		Serial.println("Check Connections. No slave attached.");
+		while(1);
+	}
 }
