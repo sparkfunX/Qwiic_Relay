@@ -15,7 +15,7 @@
 #define RELAY_PIN   4
 #define SETTING_LOCATION_ADDRESS	1
 
-const float  version = 1.1;
+const float  firmwareVersion = 1.1;
  
 
 volatile byte qwiicRelayAddress  =    0x18; //default
@@ -73,8 +73,6 @@ void loop() {
 	
 	if(command == 0x04 ){ //report back with firmware version
 		versionFlag = 1;
-		delay(100); //delay so next time ISR request is called we have time to change the flag.
-	// set a flag so that the next time i do a request I sent 4 bytes (= float) to the master...
 	/*
 		should be similar to the get status but get status was built when we only sent back status
 		now we are deciding the status and the firmware version so we need to make a decision
@@ -128,12 +126,11 @@ void onI2CRequest() {
 	// then goes to main, sets the flag. then if that happens slower than versionFlag we have a race condition. 
 
 	if(versionFlag == 1){
-	TinyWire.send(0x99); //tiny.wire doesn't like to send multiple bytes so lets see how this goes. we can always_noconv
-	//make the version a number just 1 byte then convert over to TinyCore.
-	TinyWire.send(0x88); //tiny.wire doesn't like to send multiple bytes so lets see how this goes. we can always_noconv
-	TinyWire.send(0x77); //tiny.wire doesn't like to send multiple bytes so lets see how this goes. we can always_noconv
-	TinyWire.send(0x66); //tiny.wire doesn't like to send multiple bytes so lets see how this goes. we can always_noconv
-
+	//TinyWire.send(firmwareVersion);// tiny wire can't send multiple bytes.
+	TinyWire.send(0); //hard coded but we need to go to tiny core now. 
+	TinyWire.send(1);
+	TinyWire.send(1);
+	TinyWire.send(0);
 	versionFlag = 0; // reset the flag
 	}
 	else{
