@@ -14,6 +14,9 @@
 #include <Wire.h>
 
 const byte qwiicRelayAddress = 0x18;     //Default Address
+#define COMMAND_RELAY_OFF 0x00
+#define COMMAND_RELAY_ON 0x01 
+
 
 void setup() {
   Serial.begin(9600);
@@ -38,7 +41,7 @@ void loop() {
 // message to the Serial Monitor if no slave found.
 void relayOn() {
   Wire.beginTransmission(qwiicRelayAddress);
-  Wire.write(0x01);          
+  Wire.write(COMMAND_RELAY_ON);          
   Wire.endTransmission(); 
 }
 
@@ -48,7 +51,7 @@ void relayOn() {
 // message to the Serial Monitor if no slave found.
 void relayOff() {
   Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(0x00);              
+  Wire.write(COMMAND_RELAY_OFF);              
   Wire.endTransmission();       
 }
 

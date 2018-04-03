@@ -19,8 +19,14 @@
 
 ******************************************************************************/
 #include <Wire.h>
+#define COMMAND_RELAY_OFF 				0x00
+#define COMMAND_RELAY_ON 				0x01 
+#define COMMAND_CHANGE_ADDRESS 			0x03
+
+
 
 volatile byte qwiicRelayAddress = 0x18;     //Default Address
+
 
 void setup() {
   Serial.begin(9600);
@@ -34,7 +40,7 @@ void setup() {
     Serial.println("Check Connections. Slave not found.");
   }
 
-    Serial.println("Qwiic Relay found!");
+  Serial.println("Qwiic Relay found!");
 	
   relayOn(); // Turn on the Relay (at address 0x18)
   delay(1000);
@@ -77,7 +83,7 @@ boolean changeAddress(byte address) {
   }
     //valid address
     Wire.beginTransmission(qwiicRelayAddress); 
-    Wire.write(0x03);        
+    Wire.write(COMMAND_CHANGE_ADDRESS);        
     qwiicRelayAddress = address;
     Wire.write(qwiicRelayAddress);           
     Wire.endTransmission();    
@@ -92,7 +98,7 @@ boolean changeAddress(byte address) {
 // message to the Serial Monitor if no slave found.
 void relayOn() {
   Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(0x01);          
+  Wire.write(COMMAND_RELAY_ON);          
   Wire.endTransmission();    
 }
 
@@ -102,6 +108,6 @@ void relayOn() {
 // message to the Serial Monitor if no slave found.
 void relayOff() {
   Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(0x00);              
+  Wire.write(COMMAND_RELAY_OFF);              
   Wire.endTransmission();      
 }

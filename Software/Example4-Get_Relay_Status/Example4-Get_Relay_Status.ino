@@ -1,5 +1,5 @@
 /******************************************************************************
-  Qwiic Relay Example 2 - Change I2C Address
+  Qwiic Relay Example 4 - Get Relay Status
   Kevin Kuwata @ SparkX
   March 21, 2018
   https://github.com/sparkfunX/Qwiic_Relay
@@ -16,7 +16,12 @@
 ******************************************************************************/
 #include <Wire.h>
 
+#define COMMAND_RELAY_OFF 0x00
+#define COMMAND_RELAY_ON 0x01 
+
 const byte qwiicRelayAddress = 0x18;     //Default Address
+
+
 
 void setup() {
   Serial.begin(9600);
@@ -69,7 +74,7 @@ byte getStatus() {
 // message to the Serial Monitor if no slave found.
 void relayOn() {
   Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(0x01);           
+  Wire.write(COMMAND_RELAY_ON);           
   Wire.endTransmission();    
 }
 
@@ -78,7 +83,7 @@ void relayOn() {
 // message to the Serial Monitor if no slave found.
 void relayOff() {
   Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(0x00);             
+  Wire.write(COMMAND_RELAY_OFF);             
   Wire.endTransmission();      
 }
 

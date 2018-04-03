@@ -1,7 +1,5 @@
 /******************************************************************************
   Qwiic Relay Example 3 -I2C_Scanner
-  Kevin Kuwata @ SparkX
-  March 21, 2018
   https://github.com/sparkfunX/Qwiic_Relay
   Arduino 1.8.5
 
