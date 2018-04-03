@@ -7,7 +7,7 @@
 
 
   This sketch demonstrates how to get the firmware version of the Qwiic Relay.
-  If using version prior to and including 1.0 the version number will be 25.5. 
+  If using version prior to and including 1.0 the version number will be 25.5 or 26.5. 
   Qwiic Relay after version 1.0 will respond with the correct firmware version.
   Default Qwiic relay address is 0x18.
 

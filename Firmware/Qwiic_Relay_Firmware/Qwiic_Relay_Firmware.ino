@@ -23,14 +23,14 @@ const byte RELAY_PIN = 4;
 #define COMMAND_CHANGE_ADDRESS 0x03
 #define COMMAND_FIRMWARE_VERSION 0x04
 #define COMMAND_STATUS 0x05
-#define COMMAND_NOTHING_NEW 0x99
+#define COMMAND_HAS_BEEN_CHECKED 0x99
 
 const byte firmwareVersionMajor = 1;
 const byte firmwareVersionMinor = 0;
 
 volatile byte qwiicRelayAddress  = 0x18; //default
 
-volatile byte command = COMMAND_NOTHING_NEW;
+volatile byte command = COMMAND_HAS_BEEN_CHECKED;
 
 void setup() {
 	//Read EEPROM, is it empty (0xFF)? or does it have a value?
@@ -66,11 +66,11 @@ void receiveEvent(int bytesReceived) {
 			
 			if(command == COMMAND_RELAY_ON) {
 				digitalWrite(RELAY_PIN, HIGH);
-				command = COMMAND_NOTHING_NEW;
+				command = COMMAND_HAS_BEEN_CHECKED;
 			}
 			else if(command == COMMAND_RELAY_OFF) {
 				digitalWrite(RELAY_PIN, LOW);
-				command = COMMAND_NOTHING_NEW;
+				command = COMMAND_HAS_BEEN_CHECKED;
 			}
 		}
 		else if(count == 1){
@@ -103,7 +103,7 @@ void onI2CRequest() {
 		TinyWire.send(firmwareVersionMajor);
 		TinyWire.send(firmwareVersionMinor);
 		
-		command = COMMAND_NOTHING_NEW;
+		command = COMMAND_HAS_BEEN_CHECKED;
 	}
 	else if(command == COMMAND_STATUS){
 		if(digitalRead(RELAY_PIN) == HIGH) 
@@ -111,6 +111,6 @@ void onI2CRequest() {
 		else
 			TinyWire.send(COMMAND_RELAY_OFF); 
 		
-		command = COMMAND_NOTHING_NEW;
+		command = COMMAND_HAS_BEEN_CHECKED;
 	}
 }

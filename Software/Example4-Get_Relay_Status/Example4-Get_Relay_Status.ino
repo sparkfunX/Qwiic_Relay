@@ -18,16 +18,16 @@
 
 #define COMMAND_RELAY_OFF 0x00
 #define COMMAND_RELAY_ON 0x01 
+#define COMMAND_STATUS 0x05
+#define COMMAND_NOTHING_NEW 0x99
 
 const byte qwiicRelayAddress = 0x18;     //Default Address
-
-
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Master Awake");
   
-  Wire.begin(); // join the I2C Bus
+  Wire.begin();
   testForConnectivity();
   
   relayOn();
@@ -53,17 +53,19 @@ void loop() {
 // getStatus() returns the status of the Qwiic Relay.
 // if returns a 1 the relay is on, return a 0 if the
 // Relay is off, and a -1 if an error occurred.
-byte getStatus() {
+byte getStatus(){ 
+  Wire.beginTransmission(qwiicRelayAddress);
+  Wire.write(COMMAND_STATUS); // command for status
+  Wire.endTransmission();    // stop transmitting //this looks like it was essential. 
+
   Wire.requestFrom(qwiicRelayAddress, 1);    // request 1 bytes from slave device qwiicRelayAddress
+
   while (Wire.available()) { // slave may send less than requested
-    char c = Wire.read(); // receive a byte as character.
-    if (c == 0x01) {
-      return 1;
-    }
-    else if (c == 0x00) {
-      return 0;
-    }
-      return -1; //error
+    char c = Wire.read(); // receive a byte as character. 
+	if(c ==0x01) return 1;
+	else{
+		return 0;
+	}
   }
 }
 
