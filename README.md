@@ -5,9 +5,9 @@ SparkFun Qwiic Relay
 
 [*SparkX Qwiic Relay (SPX-14668)*](https://www.sparkfun.com/products/14668)
 
-Ever wanted to control something that consumes a lot of current? Don't want to hassle with isolating high voltage from low voltage? Now you don't have to with the Qwiic Relay! This I2C device is allows you to control the Relay with simple I2C commands. You can check the status of the relay and even change the address on the fly, allowing you to control multiple Qwiic Relays!
+Ever wanted to control something that consumes a lot of current? Don't want to hassle with isolating high voltage from your Arduino? Now you don't have to with the Qwiic Relay! This I2C device is allows you to control the Relay with simple I2C commands. You can check the status of the relay and even change the address on the fly, allowing you to control multiple Qwiic Relays!
 
-The Qwiic Relay can handle 5.5 Amps and up to 120 VAC perfect for large inductive loads like DC motors or even a blender.
+The Qwiic Relay can handle 5.5 Amps and up to 120 VAC-- perfect for large inductive loads like DC motors or a blender.
 
 The Qwiic Relay comes fully assembled and uses the simple [Qwiic](https://www.sparkfun.com/qwiic) interface. No soldering, no voltage translation, no figuring out which pin is SDA or SCL, just plug and go!
 
