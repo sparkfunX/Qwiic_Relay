@@ -4,15 +4,15 @@ SparkFun Qwiic Relay
 ![SparkFun Qwiic Relay](https://cdn.sparkfun.com/assets/parts/1/2/8/6/6/14668-Qwiic_Relay-01.jpg)
 
 [*SparkX Qwiic Relay (SPX-14668)*](https://www.sparkfun.com/products/14668)
+Have you ever wanted to control something powerful? Have you ever needed to turn on/off a high voltage device from your Arduino? Now you can with the Qwiic Relay! This device allows you to control large power loads with simple I<sup>2</sup>C commands. The Qwiic Relay can handle 10 Amps at 120 Volts AC, perfect for large inductive loads like DC motors or blenders.
 
-Ever wanted to control something that consumes a lot of current? Don't want to hassle with isolating high voltage from your Arduino? Now you don't have to with the Qwiic Relay! This I2C device is allows you to control the Relay with simple I2C commands. You can check the status of the relay and even change the address on the fly, allowing you to control multiple Qwiic Relays!
-
-The Qwiic Relay can handle 5.5 Amps and up to 120 VAC-- perfect for large inductive loads like DC motors or a blender.
+The Qwiic Relay comes with a default I<sup>2</sup>C address but can be changed with a simple command allowing you to control over 100 Qwiic Relays on a single bus!<sup>[1](#powerWarning)</sup>
 
 The Qwiic Relay comes fully assembled and uses the simple [Qwiic](https://www.sparkfun.com/qwiic) interface. No soldering, no voltage translation, no figuring out which pin is SDA or SCL, just plug and go!
 
-Worried about interacting with Mains (110VAC)? Consider looking at the [IoT Power Relay](https://www.sparkfun.com/products/14236). 
+<div class="alert alert-warning"><b>Note:</b> Controlling high voltage (110/220VAC) requires certain precautions. A beginner can do it but if you're unsure then please consider the pre-made <a href="https://www.sparkfun.com/products/14236">IoT Power Relay</a>. It's not I<sup>2</sup>C but the IoT Power Relay contains shielding to prevent accidental shock.</div>
 
+<a name="powerWarning"></a>Footnote 1: Toggling lots of relays on a 3.3V bus can cause voltage spikes. An external power supply will be required.
 Repository Contents
 -------------------
 

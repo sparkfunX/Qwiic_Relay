@@ -160,7 +160,7 @@
 <wire x1="25.4" y1="0" x2="25.4" y2="50.8" width="0.2032" layer="20"/>
 <wire x1="25.4" y1="50.8" x2="0" y2="50.8" width="0.2032" layer="20"/>
 <wire x1="0" y1="50.8" x2="0" y2="0" width="0.2032" layer="20"/>
-<text x="29.21" y="13.97" size="1.778" layer="51" ratio="15">Max Current 5.5 amp
+<text x="29.21" y="13.97" size="1.778" layer="51" ratio="15">Max Current 5.5A
 100 mil width
 15 *C Rise
 1 Oz Cu</text>
@@ -203,6 +203,11 @@
 <vertex x="15.748" y="31.75"/>
 <vertex x="9.398" y="31.75"/>
 </polygon>
+<text x="29.21" y="38.1" size="1.778" layer="51" ratio="15">The relay is rated for 10A at 110VAC or
+5A at 250VAC. The current is limited by
+the FR4 glass transition temperature- typically 135 *C. 
+Theoretical maximum const current draw is 7A. Pulsed current can be higher.
+https://www.qorvo.com/design-hub/design-tools/trace-width-calculator</text>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">

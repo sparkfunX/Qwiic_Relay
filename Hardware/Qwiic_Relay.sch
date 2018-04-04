@@ -9579,6 +9579,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="160.02" y="180.34" size="1.27" layer="97">Screw Terminal</text>
 <text x="169.164" y="109.728" size="2.032" layer="97" align="top-left">I2C Port</text>
 <wire x1="147.32" y1="99.06" x2="248.92" y2="99.06" width="0.2032" layer="97" style="longdash"/>
+<text x="15.24" y="170.18" size="1.27" layer="97">The board is designed for a 15*C temperature 
+rise Allowing for a continous current draw of 
+5.5A. The relay can handle 10 A at 110VAC 
+for short pulses (under 20 seconds).</text>
 </plain>
 <instances>
 <instance part="K1" gate="K1" x="109.22" y="139.7"/>
@@ -9985,4 +9989,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
