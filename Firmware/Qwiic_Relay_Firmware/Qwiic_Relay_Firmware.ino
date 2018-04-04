@@ -17,12 +17,12 @@
 
 volatile byte qwiicRelayAddress  =    0x18; //default
 
-#define COMMAND_RELAY_OFF 0x00
-#define COMMAND_RELAY_ON 0x01
-#define COMMAND_CHANGE_ADDRESS 0x03
-#define COMMAND_FIRMWARE_VERSION 0x04
-#define COMMAND_STATUS 0x05
-#define COMMAND_HAS_BEEN_CHECKED 0x99
+#define COMMAND_RELAY_OFF 			0x00
+#define COMMAND_RELAY_ON 			0x01
+#define COMMAND_CHANGE_ADDRESS 		0x03
+#define COMMAND_FIRMWARE_VERSION 	0x04
+#define COMMAND_STATUS 				0x05
+#define COMMAND_HAS_BEEN_CHECKED 	0x99
 
 const byte firmwareVersionMajor = 1;
 const byte firmwareVersionMinor = 0;
@@ -56,7 +56,6 @@ void loop() {
 
 // When the master initiates a command and data to slave
 //		ie) the master says 0x01, then sends a 1, means command: 0x01 then the slave listens for the next thing, which is the relay state 1
-//This is modifying ReceivedData array, which stores all the bytes that a master sent to the slave.
 void receiveEvent(int bytesReceived) {
   byte count = 0;
   while (TinyWire.available() > 0) {
