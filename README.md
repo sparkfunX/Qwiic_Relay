@@ -11,18 +11,14 @@ The Qwiic Relay can handle 5.5 Amps and up to 120 VAC perfect for large inductiv
 
 The Qwiic Relay comes fully assembled and uses the simple [Qwiic](https://www.sparkfun.com/qwiic) interface. No soldering, no voltage translation, no figuring out which pin is SDA or SCL, just plug and go!
 
-
+Worried about interacting with Mains (110VAC)? Consider looking at the [IoT Power Relay](https://www.sparkfun.com/products/14236) which is completely isolated. 
 
 Repository Contents
 -------------------
 
 * **/Documents** - Datasheets
-* **/Firmware** - Just the test routine for the testjig. Please see the [BNO080/BNO085 library](https://github.com/sparkfun/SparkFun_BNO080_Arduino_Library) for a large number of examples.
+* **/Firmware** - Latest firmware and examples. 
 * **/Hardware** - Eagle design files (.brd, .sch)
-
-Library
---------------
-* **[Arduino Library](https://github.com/sparkfun/SparkFun_BNO080_Arduino_Library)** - Library for reading Quaternions, raw accel/gyro/mag, reading activity classifier, advanced configuration, etc.
 
 License Information
 -------------------
