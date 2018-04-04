@@ -12,28 +12,30 @@
 ******************************************************************************/
 
 #include <Wire.h>
+#define COMMAND_RELAY_OFF     0x00
+#define COMMAND_RELAY_ON      0x01
+
 
 const byte qwiicRelayAddress = 0x18;     //Default Address
-#define COMMAND_RELAY_OFF 0x00
-#define COMMAND_RELAY_ON 0x01 
+
 
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Example 1 Basic Control");
   Wire.begin(); // join the I2C Bus
-  
+
   testForConnectivity();
-  
+
 }
 
 void loop() {
-  relayOn();    // Turn the Relay On
+  relayOn();
   Serial.println("Relay is On.");
-  delay(2000);  // Wait 2 Seconds
-  relayOff();   // Turn the Relay Off
+  delay(2000);
+  relayOff();
   Serial.println("Relay is Off.");
-  delay(2000);  // Wait 2 Seconds
+  delay(2000);
 }
 
 // RelayOn() turns on the relay at the qwiicRelayAddress
@@ -41,8 +43,8 @@ void loop() {
 // message to the Serial Monitor if no slave found.
 void relayOn() {
   Wire.beginTransmission(qwiicRelayAddress);
-  Wire.write(COMMAND_RELAY_ON);          
-  Wire.endTransmission(); 
+  Wire.write(COMMAND_RELAY_ON);
+  Wire.endTransmission();
 }
 
 
@@ -50,19 +52,19 @@ void relayOn() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-  Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(COMMAND_RELAY_OFF);              
-  Wire.endTransmission();       
+  Wire.beginTransmission(qwiicRelayAddress);
+  Wire.write(COMMAND_RELAY_OFF);
+  Wire.endTransmission();
 }
 
 
 // testForConnectivity() checks for an ACK from an Relay. If no ACK
-// program freezes and notifies user. 
-void testForConnectivity(){
-	Wire.beginTransmission(qwiicRelayAddress);
-	//check here for an ACK from the slave, if no ack don't allow change?
-	if(Wire.endTransmission() != 0){
-		Serial.println("Check Connections. No slave attached.");
-		while(1);
-	}
+// program freezes and notifies user.
+void testForConnectivity() {
+  Wire.beginTransmission(qwiicRelayAddress);
+  //check here for an ACK from the slave, if no ack don't allow change?
+  if (Wire.endTransmission() != 0) {
+    Serial.println("Check Connections. No slave attached.");
+    while (1);
+  }
 }

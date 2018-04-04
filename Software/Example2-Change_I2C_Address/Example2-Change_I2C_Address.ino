@@ -19,41 +19,40 @@
 
 ******************************************************************************/
 #include <Wire.h>
-#define COMMAND_RELAY_OFF 				0x00
-#define COMMAND_RELAY_ON 				0x01 
+#define COMMAND_RELAY_OFF 				  0x00
+#define COMMAND_RELAY_ON 				    0x01
 #define COMMAND_CHANGE_ADDRESS 			0x03
 
 
 
-volatile byte qwiicRelayAddress = 0x18;     //Default Address
+volatile byte qwiicRelayAddress = 0x19;     //Default Address
 
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Master Awake");
   Wire.begin(); // join the I2C Bus
-  
-  
+
+
   Wire.beginTransmission(qwiicRelayAddress); // transmit to device
   //check here for an ACK from the slave
-  if (Wire.endTransmission() !=0 ) {
+  if (Wire.endTransmission() != 0 ) {
     Serial.println("Check Connections. Slave not found.");
   }
 
   Serial.println("Qwiic Relay found!");
-	
+
   relayOn(); // Turn on the Relay (at address 0x18)
   delay(1000);
-  byte error = changeAddress(0x19); // Change the Relay's address to 0x19
-  delay(100);   //Allow the slave time to change it's address.
+  byte error = changeAddress(0x18); // Change the Relay's address to 0x19
   relayOff(); // Turn off the Relay (at address 0x19)
   delay(1000);
   changeAddress(0x00); // Try to change address to Invalid Address.
-  
+
   if (error != true) {
     Serial.println("!!!!! invalid address" );
   }
-    Serial.println("success");
+  Serial.println("success");
 }
 
 void loop() {
@@ -69,25 +68,25 @@ void loop() {
 // This function returns true if successful and
 // false if unsuccessful.
 boolean changeAddress(byte address) {
-	Wire.beginTransmission(qwiicRelayAddress); 
+  Wire.beginTransmission(qwiicRelayAddress);
   //check here for an ACK from the slave
   if (Wire.endTransmission()  != 0) {
     Serial.println("Check Connections. No slave found.");
-    return(false);
+    return (false);
   }
 
   //check if valid address.
   if (address < 0x07 || address > 0x78) {
-	 Serial.println("Invalid I2C address");
-    return(false);
+    Serial.println("Invalid I2C address");
+    return (false);
   }
-    //valid address
-    Wire.beginTransmission(qwiicRelayAddress); 
-    Wire.write(COMMAND_CHANGE_ADDRESS);        
-    qwiicRelayAddress = address;
-    Wire.write(qwiicRelayAddress);           
-    Wire.endTransmission();    
-	return(true); //Success!
+  //valid address
+  Wire.beginTransmission(qwiicRelayAddress);
+  Wire.write(COMMAND_CHANGE_ADDRESS);
+  qwiicRelayAddress = address;
+  Wire.write(qwiicRelayAddress);
+  Wire.endTransmission();
+  return (true); //Success!
 }
 
 
@@ -97,9 +96,9 @@ boolean changeAddress(byte address) {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOn() {
-  Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(COMMAND_RELAY_ON);          
-  Wire.endTransmission();    
+  Wire.beginTransmission(qwiicRelayAddress);
+  Wire.write(COMMAND_RELAY_ON);
+  Wire.endTransmission();
 }
 
 
@@ -107,7 +106,7 @@ void relayOn() {
 // Checks to see if a slave is connected and prints a
 // message to the Serial Monitor if no slave found.
 void relayOff() {
-  Wire.beginTransmission(qwiicRelayAddress); 
-  Wire.write(COMMAND_RELAY_OFF);              
-  Wire.endTransmission();      
+  Wire.beginTransmission(qwiicRelayAddress);
+  Wire.write(COMMAND_RELAY_OFF);
+  Wire.endTransmission();
 }
