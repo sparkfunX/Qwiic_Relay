@@ -11,7 +11,7 @@ The Qwiic Relay can handle 5.5 Amps and up to 120 VAC perfect for large inductiv
 
 The Qwiic Relay comes fully assembled and uses the simple [Qwiic](https://www.sparkfun.com/qwiic) interface. No soldering, no voltage translation, no figuring out which pin is SDA or SCL, just plug and go!
 
-Worried about interacting with Mains (110VAC)? Consider looking at the [IoT Power Relay](https://www.sparkfun.com/products/14236) which is completely isolated. 
+Worried about interacting with Mains (110VAC)? Consider looking at the [IoT Power Relay](https://www.sparkfun.com/products/14236). 
 
 Repository Contents
 -------------------
