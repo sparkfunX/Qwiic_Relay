@@ -25,7 +25,7 @@
 
 
 
-volatile byte qwiicRelayAddress = 0x18;     //Default Address
+volatile byte qwiicRelayAddress = 0x19;     //Default Address
 
 
 void setup() {
@@ -44,8 +44,7 @@ void setup() {
 	
   relayOn(); // Turn on the Relay (at address 0x18)
   delay(1000);
-  byte error = changeAddress(0x19); // Change the Relay's address to 0x19
-  delay(100);   //Allow the slave time to change it's address.
+  byte error = changeAddress(0x18); // Change the Relay's address to 0x19
   relayOff(); // Turn off the Relay (at address 0x19)
   delay(1000);
   changeAddress(0x00); // Try to change address to Invalid Address.
