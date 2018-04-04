@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -9579,9 +9579,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="160.02" y="180.34" size="1.27" layer="97">Screw Terminal</text>
 <text x="169.164" y="109.728" size="2.032" layer="97" align="top-left">I2C Port</text>
 <wire x1="147.32" y1="99.06" x2="248.92" y2="99.06" width="0.2032" layer="97" style="longdash"/>
-<text x="38.1" y="175.26" size="2.54" layer="91">remove this 10 ohm 
-and check that you don't need it</text>
-<text x="99.06" y="114.3" size="1.27" layer="91">2222 or can we go lower?</text>
 </plain>
 <instances>
 <instance part="K1" gate="K1" x="109.22" y="139.7"/>
@@ -9988,10 +9985,4 @@ and check that you don't need it</text>
 </sheets>
 </schematic>
 </drawing>
-<compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
-</compatibility>
 </eagle>
