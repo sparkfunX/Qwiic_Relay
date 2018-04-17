@@ -12,10 +12,16 @@
 #include <TinyWire.h> //https://github.com/lucullusTheOnly/TinyWire
 #include <EEPROM.h>
 
+
 #define RELAY_PIN   4
+ 
 #define SETTING_LOCATION_ADDRESS	1
 
 volatile byte qwiicRelayAddress  =    0x18; //default
+
+const byte relayAddressPin	=	3;
+
+
 
 #define COMMAND_RELAY_OFF 			0x00
 #define COMMAND_RELAY_ON 			0x01
@@ -25,22 +31,32 @@ volatile byte qwiicRelayAddress  =    0x18; //default
 #define COMMAND_HAS_BEEN_CHECKED 	0x99
 
 const byte firmwareVersionMajor = 1;
-const byte firmwareVersionMinor = 0;
+const byte firmwareVersionMinor = 1;
 
 volatile byte command = COMMAND_HAS_BEEN_CHECKED;
 volatile byte address = COMMAND_HAS_BEEN_CHECKED;
 
 
 void setup() {
-  //Read EEPROM, is it empty (0xFF)? or does it have a value?
-  qwiicRelayAddress =  EEPROM.read(SETTING_LOCATION_ADDRESS);
-  if (qwiicRelayAddress == 0xFF) {
-    //EEPROM has never been written before, use the default address 0x18.
-    qwiicRelayAddress = 0x18; //default
-  }
-
+	
+  pinMode(relayAddressPin, INPUT);
+  digitalWrite(relayAddressPin, HIGH); //internal pull up
+  
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
+  
+	
+	if(digitalRead(relayAddressPin) == 0){
+		qwiicRelayAddress = 0x19;
+	}
+	else{
+  //Read EEPROM, is it empty (0xFF)? or does it have a value?
+  qwiicRelayAddress =  EEPROM.read(SETTING_LOCATION_ADDRESS);
+		if (qwiicRelayAddress == 0xFF) {
+			//EEPROM has never been written before, use the default address 0x18.
+		qwiicRelayAddress = 0x18; //default
+		}
+	}
 
   TinyWire.begin(qwiicRelayAddress);
   TinyWire.onReceive(receiveEvent); // register event
