@@ -17,6 +17,8 @@
 
 volatile byte qwiicRelayAddress  =    0x18; //default
 
+const byte relayAddressPin	=	3;
+
 #define COMMAND_RELAY_OFF 			0x00
 #define COMMAND_RELAY_ON 			0x01
 #define COMMAND_CHANGE_ADDRESS 		0x03

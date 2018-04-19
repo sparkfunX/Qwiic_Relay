@@ -25,6 +25,7 @@ void setup() {
   Serial.println("Qwiic Relay Master Awake");
 
   Wire.begin(); 
+
   testForConnectivity();
   Serial.print("Version Number: ");
   Serial.println(getFirmwareVersion(), 1);

@@ -24,7 +24,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Qwiic Relay Example 1 Basic Control");
   Wire.begin(); // join the I2C Bus
-
+  
   testForConnectivity();
 
 }

@@ -28,6 +28,7 @@ void setup() {
   Serial.println("Qwiic Relay Master Awake");
 
   Wire.begin();
+  
   testForConnectivity();
 
   relayOn();
