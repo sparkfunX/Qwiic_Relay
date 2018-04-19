@@ -9,7 +9,7 @@
   0x18;
 
 ******************************************************************************/
-#include <TinyWire.h> //https://github.com/lucullusTheOnly/TinyWire
+#include <Wire.h>
 #include <EEPROM.h>
 
 #define RELAY_PIN   4
@@ -53,9 +53,9 @@ void setup() {
 		}
 	}
 	
-  TinyWire.begin(qwiicRelayAddress);
-  TinyWire.onReceive(receiveEvent); // register event
-  TinyWire.onRequest(onI2CRequest);
+  Wire.begin(qwiicRelayAddress);
+  Wire.onReceive(receiveEvent); // register event
+  Wire.onRequest(onI2CRequest);
 }
 
 void loop() {
@@ -69,9 +69,9 @@ void loop() {
 //		ie) the master says 0x01, then sends a 1, means command: 0x01 then the slave listens for the next thing, which is the relay state 1
 void receiveEvent(int bytesReceived) {
   byte count = 0;
-  while (TinyWire.available() > 0) {
+  while (Wire.available() > 0) {
     if (count == 0) {
-      command = TinyWire.read();
+      command = Wire.read();
 
       if (command == COMMAND_RELAY_ON) {
         digitalWrite(RELAY_PIN, HIGH);
@@ -84,19 +84,19 @@ void receiveEvent(int bytesReceived) {
     }
     else if (count == 1) {
       if (command == COMMAND_CHANGE_ADDRESS) {
-        byte address = TinyWire.read();
+        byte address = Wire.read();
 
         if (address > 0x07 && address < 0x78) {
           //valid address, update and save to EEPROM
           qwiicRelayAddress = address;
 
           EEPROM.write(SETTING_LOCATION_ADDRESS, qwiicRelayAddress);
-          TinyWire.begin(qwiicRelayAddress);
+          Wire.begin(qwiicRelayAddress);
         }
       }
     }
     else {
-      TinyWire.read(); //read the data coming in but ignore it.
+      Wire.read(); //read the data coming in but ignore it.
     }
     count++;
   }
@@ -111,17 +111,17 @@ void onI2CRequest() {
   //not sure if this will work because the master sends 0x04, then the salve enters the RX event isr
   // then goes to main, sets the flag. then if that happens slower than versionFlag we have a race condition.
   if (command == COMMAND_FIRMWARE_VERSION) {
-    //TinyWire.send(firmwareVersion);// tiny wire can't send multiple bytes.
-    TinyWire.send(firmwareVersionMajor);
-    TinyWire.send(firmwareVersionMinor);
+    //Wire.write(firmwareVersion);// tiny wire can't send multiple bytes.
+    Wire.write(firmwareVersionMajor);
+    Wire.write(firmwareVersionMinor);
 
     command = COMMAND_HAS_BEEN_CHECKED;
   }
   else if (command == COMMAND_STATUS) {
     if (digitalRead(RELAY_PIN) == HIGH)
-      TinyWire.send(COMMAND_RELAY_ON);
+      Wire.write(COMMAND_RELAY_ON);
     else
-      TinyWire.send(COMMAND_RELAY_OFF);
+      Wire.write(COMMAND_RELAY_OFF);
 
     command = COMMAND_HAS_BEEN_CHECKED;
   }
