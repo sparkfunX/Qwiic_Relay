@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="9.0.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
@@ -12,7 +13,7 @@
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="16" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="14" fill="1" visible="yes" active="yes"/>
@@ -39,12 +40,12 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="yes"/>
-<layer number="51" name="tDocu" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="6" fill="1" visible="no" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="no" active="no"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="no" active="no"/>
@@ -165,7 +166,7 @@
 15 *C Rise
 1 Oz Cu</text>
 <circle x="10.16" y="44.45" radius="0.1778" width="0.1778" layer="22"/>
-<text x="24.257" y="10.16" size="1.778" layer="16" ratio="15" rot="MR90" align="center">x12</text>
+<text x="22.86" y="8.89" size="1.778" layer="16" ratio="15" rot="SMR270" align="center">x12</text>
 <dimension x1="25.4" y1="50.8" x2="0" y2="50.8" x3="12.7" y3="58.42" textsize="1.778" textratio="15" layer="47" unit="inch"/>
 <dimension x1="25.4" y1="50.8" x2="25.4" y2="0" x3="39.37" y3="25.4" textsize="1.778" textratio="15" layer="47" unit="inch" visible="yes"/>
 <dimension x1="2.54" y1="48.26" x2="22.86" y2="48.26" x3="12.7" y3="54.61" textsize="1.778" textratio="15" layer="47" unit="inch"/>
@@ -196,7 +197,7 @@ Table 6-1 : Electrical Conductor Spacing
 <dimension x1="17.272" y1="26.67" x2="14.097" y2="26.67" x3="15.6845" y3="27.94" textsize="0.2032" textratio="15" layer="47" width="0.0254" visible="yes"/>
 <wire x1="15.24" y1="32.512" x2="10.16" y2="32.512" width="0.1778" layer="41"/>
 <dimension x1="12.7" y1="30.099" x2="12.7" y2="32.893" x3="11.43" y3="31.496" textsize="0.2032" textratio="15" layer="47" dtype="vertical" width="0.0254" visible="yes"/>
-<dimension x1="13.843" y1="29.591" x2="16.51" y2="32.004" x3="15.302865625" y3="30.65783125" textsize="0.2032" textratio="15" layer="47" width="0.0254" visible="yes"/>
+<dimension x1="13.843" y1="29.591" x2="16.51" y2="32.004" x3="15.3028625" y3="30.65783125" textsize="0.2032" textratio="15" layer="47" width="0.0254" visible="yes"/>
 <dimension x1="11.684" y1="29.591" x2="9.017" y2="32.131" x3="10.099821875" y3="30.5977875" textsize="0.2032" textratio="15" layer="47" width="0.0254" visible="yes"/>
 <text x="9.779" y="23.876" size="0.508" layer="46" font="vector" ratio="15" rot="R90">route out</text>
 </plain>
@@ -3232,10 +3233,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <param name="slThermalsForVias" value="0"/>
 <param name="dpMaxLengthDifference" value="10mm"/>
 <param name="dpGapFactor" value="2.5"/>
-<param name="checkGrid" value="0"/>
 <param name="checkAngle" value="1"/>
 <param name="checkFont" value="1"/>
 <param name="checkRestrict" value="1"/>
+<param name="checkStop" value="0"/>
+<param name="checkValues" value="0"/>
 <param name="useDiameter" value="13"/>
 <param name="maxErrors" value="50"/>
 </designrules>
@@ -3366,7 +3368,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="PROD_ID" value="RES-00818" x="19.05" y="38.1" size="1.778" layer="27" display="off"/>
 </element>
 <element name="U$3" library="SparkX" package="SPARKX-MEDIUM" value="SPARKX-LOGO4" x="2.159" y="20.32" rot="R90"/>
-<element name="LOGO1" library="SparkFun-Aesthetics" package="OSHW-LOGO-MINI" value="OSHW-LOGOMINI" x="1.397" y="6.35" rot="MR90"/>
+<element name="LOGO1" library="SparkFun-Aesthetics" package="OSHW-LOGO-MINI" value="OSHW-LOGOMINI" x="2.413" y="6.35" rot="MR270"/>
 <element name="U$4" library="SparkX" package="SPARKX-MEDIUM" value="SPARKX-LOGO4" x="2.159" y="20.32" rot="MR270"/>
 <element name="JP3" library="SparkFun" package="STAND-OFF" value="STAND-OFF" x="2.54" y="48.26"/>
 <element name="JP4" library="SparkFun" package="STAND-OFF" value="STAND-OFF" x="22.86" y="48.26"/>
@@ -3409,7 +3411,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="U$6" library="Labels-0_04" package="SDA" value="" x="13.97" y="49.022" rot="MR270"/>
 <element name="U$7" library="Labels-0_04" package="3.3V" value="" x="11.43" y="49.022" rot="MR270"/>
 <element name="U$8" library="Labels-0_04" package="GND" value="" x="8.89" y="49.022" rot="MR270"/>
-<element name="U$10" library="buzzard_labels" package="ACT5" value="" x="19.685" y="32.512" rot="R90"/>
+<element name="U$10" library="buzzard_labels" package="ACT5" value="" x="19.558" y="32.258" rot="R90"/>
 <element name="U$15" library="buzzard_labels" package="QWIIC_RELAY1" value="" x="22.86" y="13.589" rot="R90"/>
 <element name="U$16" library="buzzard_labels" package="QWIIC_RELAY1" value="" x="22.86" y="28.321" rot="MR270"/>
 <element name="U$17" library="buzzard_labels" package="NC3" value="" x="17.78" y="3.175" rot="MR270"/>
@@ -3421,8 +3423,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="U$11" library="buzzard_labels" package="NO2" value="" x="7.62" y="-5.461" rot="R90"/>
 <element name="U$20" library="buzzard_labels" package="NC3" value="" x="17.78" y="-5.207" rot="R90"/>
 <element name="J5" library="SparkFun-Connectors" package="SCREWTERMINAL-5MM-3" value="" x="17.78" y="5.08" rot="R180">
-<attribute name="SF_SKU" value="PRT-08433" x="17.78" y="5.08" size="1.778" layer="27" font="vector" ratio="15" rot="R180" display="off"/>
 <attribute name="PROD_ID" value="CONN-10134" x="17.78" y="5.08" size="1.778" layer="27" font="vector" ratio="15" rot="R180" display="off"/>
+<attribute name="SF_SKU" value="PRT-08433" x="17.78" y="5.08" size="1.778" layer="27" font="vector" ratio="15" rot="R180" display="off"/>
 </element>
 </elements>
 <signals>
