@@ -4407,16 +4407,16 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R1" library="SparkFun-Resistors" package="0603" value="10" x="2.54" y="34.29" smashed="yes">
 <attribute name="NAME" x="2.54" y="35.052" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-07871" x="2.54" y="34.29" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-1.143" y="34.544" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
+<attribute name="PROD_ID" value="RES-09834" x="2.54" y="34.29" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="10" x="-1.143" y="34.544" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="R2" library="SparkFun-Resistors" package="0603" value="100" x="6.35" y="38.1" rot="R180">
-<attribute name="PROD_ID" value="RES-12438" x="6.35" y="38.1" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="R2" library="SparkFun-Resistors" package="0603" value="330" x="6.35" y="38.1" rot="R180">
+<attribute name="PROD_ID" value="RES-00818" x="6.35" y="38.1" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="R4" library="SparkFun-Resistors" package="0603" value="330" x="22.86" y="35.56" smashed="yes" rot="R180">
 <attribute name="NAME" x="22.86" y="34.798" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES_10328" x="22.86" y="35.56" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="26.416" y="35.306" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
+<attribute name="PROD_ID" value="RES-00818" x="22.86" y="35.56" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="330" x="26.416" y="35.306" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
 <element name="R5" library="SparkFun-Resistors" package="0603" value="330" x="19.05" y="38.1" smashed="yes">
 <attribute name="NAME" x="19.05" y="38.862" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
@@ -4430,25 +4430,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="JP4" library="SparkFun" package="STAND-OFF" value="STAND-OFF" x="22.86" y="48.26"/>
 <element name="JP2" library="SparkFun" package="MICRO-FIDUCIAL" value="FIDUCIALUFIDUCIAL" x="24.765" y="50.165" rot="MR0"/>
 <element name="JP6" library="SparkFun" package="MICRO-FIDUCIAL" value="FIDUCIALUFIDUCIAL" x="0.635" y="0.635" rot="MR0"/>
-<element name="R6" library="SparkFun-Resistors" package="0603" value="2.2K" x="15.24" y="47.117" smashed="yes" rot="R90">
+<element name="R6" library="SparkFun-Resistors" package="0603" value="2.2k" x="15.24" y="47.117" smashed="yes" rot="R90">
 <attribute name="NAME" x="14.478" y="47.117" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-07857" x="11.43" y="47.117" size="1.778" layer="27" font="vector" ratio="15" rot="R90" display="off"/>
-<attribute name="VALUE" x="14.986" y="49.657" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center"/>
+<attribute name="PROD_ID" value="RES-08272" x="11.43" y="47.117" size="1.778" layer="27" font="vector" ratio="15" rot="R90" display="off"/>
+<attribute name="VALUE" value="2.2k" x="14.986" y="49.657" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center"/>
 </element>
-<element name="R7" library="SparkFun-Resistors" package="0603" value="2.2K" x="10.16" y="47.117" smashed="yes" rot="R90">
+<element name="R7" library="SparkFun-Resistors" package="0603" value="2.2k" x="10.16" y="47.117" smashed="yes" rot="R90">
 <attribute name="NAME" x="9.398" y="47.117" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-07857" x="6.35" y="47.117" size="1.778" layer="27" font="vector" ratio="15" rot="R90" display="off"/>
-<attribute name="VALUE" x="9.779" y="49.657" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center"/>
+<attribute name="PROD_ID" value="RES-08272" x="6.35" y="47.117" size="1.778" layer="27" font="vector" ratio="15" rot="R90" display="off"/>
+<attribute name="VALUE" value="2.2k" x="9.779" y="49.657" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center"/>
 </element>
 <element name="JP7" library="SparkFun-Jumpers" package="SMT-JUMPER_3_2-NC_PASTE_SILK" value="" x="12.7" y="47.117"/>
 <element name="J4" library="SparkFun-Connectors" package="2X3_TEST_POINTS" value="AVR_SPI_PROG_3X2TESTPOINTS" x="12.7" y="41.021" rot="MR180"/>
-<element name="R8" library="SparkFun-Resistors" package="0603" value="10K" x="17.78" y="45.72" rot="R180">
-<attribute name="PROD_ID" value="RES-00818" x="17.78" y="45.72" size="1.778" layer="27" font="vector" ratio="15" rot="R180" display="off"/>
+<element name="R8" library="SparkFun-Resistors" package="0603" value="10k" x="17.78" y="45.72" rot="R180">
+<attribute name="PROD_ID" value="RES-00824" x="17.78" y="45.72" size="1.778" layer="27" font="vector" ratio="15" rot="R180" display="off"/>
 </element>
 <element name="R9" library="SparkFun-Resistors" package="0603" value="1k" x="2.54" y="36.83" smashed="yes">
 <attribute name="NAME" x="2.54" y="37.592" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-00818" x="2.54" y="36.83" size="1.778" layer="27" font="vector" ratio="15" display="off"/>
-<attribute name="VALUE" x="-0.762" y="37.211" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
+<attribute name="PROD_ID" value="RES-07856" x="2.54" y="36.83" size="1.778" layer="27" font="vector" ratio="15" display="off"/>
+<attribute name="VALUE" value="1k" x="-0.762" y="37.211" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
 <element name="D3" library="SparkFun-LED" package="LED-0603" value="RED" x="2.54" y="35.56" smashed="yes" rot="R180">
 <attribute name="NAME" x="2.54" y="34.925" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
